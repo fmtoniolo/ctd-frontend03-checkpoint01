@@ -3,6 +3,23 @@
   font-weight: 600;
 }
 
+.cardBoxLeft h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.cardBoxLeft h4 {
+  font-size: 14;
+  font-weight: 300;
+  margin-top: 0;
+}
+
+.cardBoxLeft p {
+  font-size: 16;
+  font-weight: 300;
+}
+
 ul {
   padding: 0;
   display: flex;

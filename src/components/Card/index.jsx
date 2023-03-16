@@ -43,19 +43,25 @@ const Card = () => {
     <div>
       <h1 className={styles.cardsContainerTitle}>Minhas Tarefas</h1>
       <ul>
-        {listaTarefas.map(({id, title, categoria, data, descricao}, index) => {
+        {listaTarefas.map(({title, categoria, data, descricao}, index) => {
           return (
             <li key={index} className={styles.cardBox}>
               <div className={styles.cardBoxLeft}>
                 <h2>{title}</h2>
-                <span>{id}</span>
                 <h4>{categoria}</h4>
                 <p>{descricao}</p>
               </div>
               <div className={styles.cardBoxRight}>
                 <h4>{data}</h4>
-                <button onClick={() => deleteTask(index)}>Delete</button>
-                <button onClick={editTask}>Edit</button>
+                <button
+                  className={styles.deleteBtn}
+                  onClick={() => deleteTask(index)}
+                >
+                  Delete
+                </button>
+                <button className={styles.editBtn} onClick={editTask}>
+                  Edit
+                </button>
               </div>
             </li>
           );
