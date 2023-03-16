@@ -1,8 +1,10 @@
-import {useEffect, useState} from "react";
+import { useEffect } from "react";
+import { useLista } from "../../context";
 import styles from "./styles.module.css";
 
 const mockup = [
   {
+    id: 0,
     title: "Tarefa 1",
     categoria: "Categoria 1",
     data: "25/01/2023",
@@ -10,6 +12,7 @@ const mockup = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos odio necessitatibus laudantium maiores quas reiciendis voluptate rem non delectus quaerat eos, reprehenderit quisquam fugit molestias id illum nulla fuga ipsam."
   },
   {
+    id: 1,
     title: "Tarefa 2",
     categoria: "Categoria 2",
     data: "25/01/2023",
@@ -17,6 +20,7 @@ const mockup = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos odio necessitatibus laudantium maiores quas reiciendis voluptate rem non delectus quaerat eos, reprehenderit quisquam fugit molestias id illum nulla fuga ipsam."
   },
   {
+    id: 2,
     title: "Tarefa 3",
     categoria: "Categoria 3",
     data: "25/01/2023",
@@ -26,10 +30,10 @@ const mockup = [
 ];
 
 const Card = () => {
-  const [listaTarefas, setListaTarefas] = useState([]);
+  const { lista, setLista } = useLista();
 
-  const deleteTask = index => {
-    return console.log("delete");
+  const deleteTask = id =>  {
+    setLista(curr => curr.filter(item => item.id !== id))
   };
 
   const editTask = () => {
@@ -37,13 +41,14 @@ const Card = () => {
   };
 
   useEffect(() => {
-    setListaTarefas(mockup);
+    setLista(mockup);
   }, []);
+
   return (
     <div>
       <h1 className={styles.cardsContainerTitle}>Minhas Tarefas</h1>
       <ul>
-        {listaTarefas.map(({title, categoria, data, descricao}, index) => {
+        {lista.map(({id, title, categoria, data, descricao}, index) => {
           return (
             <li key={index} className={styles.cardBox}>
               <div className={styles.cardBoxLeft}>
@@ -55,7 +60,7 @@ const Card = () => {
                 <h4>{data}</h4>
                 <button
                   className={styles.deleteBtn}
-                  onClick={() => deleteTask(index)}
+                  onClick={() => deleteTask(id)}
                 >
                   Delete
                 </button>
